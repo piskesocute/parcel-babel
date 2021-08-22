@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>常見物件的使用方法</title>
 </head>
+
 <body>
     <script>
-    
+
         var obj = {
             name: "mike",
         }
+        obj.age = 12;
 
-    
-        console.log(obj.name);
-        console.log(obj["name"]);
-        
-    
+        console.log(obj);
+        console.log(obj.age);
+
+
+        console.log(obj["age"]);
+        //物件也可以用中括號，但裡頭要放字串
+
+        var year = "age";
+        console.log(obj[year]);
+
+        //特定情況下可以使用變數宣告一個物件內的key並以「字串」的方式宣告
+        //再以中括號包住變數來拿到物件內的value
+
+
+
     </script>
 </body>
+
 </html>
