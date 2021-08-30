@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,22 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/02-5.css">
 </head>
+
 <body>
 
     <button id="btn">點我拿資料</button>
 
     <script>
-        
+
+        var btn = document.getElementById("btn");
+
+        //e=Event
+        btn.addEventListener("click", function (e) {
+            console.log(e);
+        })
+
     </script>
-    
+
 </body>
+
 </html>

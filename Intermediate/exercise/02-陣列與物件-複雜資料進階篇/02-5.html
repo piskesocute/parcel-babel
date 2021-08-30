@@ -79,53 +79,106 @@
                 }
             ]
         }
-
-
-
-        var seach = document.getElementsByClassName("seach")[0];
-        var seach_list = document.getElementsByClassName("seach_list")[0];
+        var search = document.getElementsByClassName("seach")[0];
         var tag = document.getElementsByClassName("tag");
+        var searchList = document.getElementsByClassName("seach_list")[0];
         var searchArr = seachData["線上課程"];
         var html = '';
 
-        //for 迴圈不能用匿名函式
-        for (var s = 0; s < tag.length; s++) {
-            tag[s].addEventListener("click", seachTagEvant);
+        for (var i = 0; i < tag.length; i++) {
+            tag[i].addEventListener('click', searchEvant)
         }
 
-        //會被時常調用的方法要獨立出來
         function DOMrander() {
+            //清空舊資料
             html = '';
-            seach_list.innerHTML = '';
+            searchList.innerHTML = '';
 
-            for (i = 0; i < searchArr.length; i++) {
+            for (var j = 0; j < searchArr.length; j++) {
                 html += '<div class="item">'
-                html += '<a href="javascript:;"  class="title">' + searchArr[i].title + '</a > '
-                html += '<a href="javascript:;"  class="link">' + searchArr[i].link + '</a > '
-                html += '<p>' + searchArr[i].text + '</p >';
-                html += '</div>'
+                html += '<a href = "javascript:;"  class="title">' + searchArr[j].title + '</ >'
+                html += '<a href="javascript:;"  class="link">' + searchArr[j].link + '</a>'
+                html += '<p>' + searchArr[j].text + '</p>'
+                html += '</div >'
+
             }
-            seach_list.innerHTML = html;
-        };
-
-
-        function seachTagEvant() {
-            searchArr = seachData[this.innerText];
-            seach.value = this.innerText;
-            //調用
-            DOMrander();
+            searchList.innerHTML = html
         }
-        //調用
-        DOMrander();
 
-        seach.addEventListener("keyup", function () {
+
+
+
+        function searchEvant() {
+            searchArr = seachData[this.innerText];
+            search.value = this.innerText;
+            DOMrander()
+
+        }
+
+        //鍵盤輸入
+        search.addEventListener('keyup', function () {
             searchArr = seachData[this.value];
+
             if (searchArr === undefined) {
                 searchArr = [];
             }
-
             DOMrander()
-        });
+        })
+
+
+
+
+
+        //一開始載入網頁就執行
+        DOMrander()
+
+
+
+
+        // var seach = document.getElementsByClassName("seach")[0];
+        // var seach_list = document.getElementsByClassName("seach_list")[0];
+        // var tag = document.getElementsByClassName("tag");
+        // var searchArr = seachData["線上課程"];
+        // var html = '';
+
+        // //for 迴圈不能用匿名函式
+        // for (var s = 0; s < tag.length; s++) {
+        //     tag[s].addEventListener("click", seachTagEvant);
+        // }
+
+        // //會被時常調用的方法要獨立出來
+        // function DOMrander() {
+        //     html = '';
+        //     seach_list.innerHTML = '';
+
+        //     for (i = 0; i < searchArr.length; i++) {
+        //         html += '<div class="item">'
+        //         html += '<a href="javascript:;"  class="title">' + searchArr[i].title + '</a > '
+        //         html += '<a href="javascript:;"  class="link">' + searchArr[i].link + '</a > '
+        //         html += '<p>' + searchArr[i].text + '</p >';
+        //         html += '</div>'
+        //     }
+        //     seach_list.innerHTML = html;
+        // };
+
+
+        // function seachTagEvant() {
+        //     searchArr = seachData[this.innerText];
+        //     seach.value = this.innerText;
+        //     //調用
+        //     DOMrander();
+        // }
+        // //調用
+        // DOMrander();
+
+        // seach.addEventListener("keyup", function () {
+        //     searchArr = seachData[this.value];
+        //     if (searchArr === undefined) {
+        //         searchArr = [];
+        //     }
+
+        //     DOMrander()
+        // });
 
 
     </script>

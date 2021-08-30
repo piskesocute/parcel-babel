@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/02-8.css">
 </head>
+
 <body>
     <div id="app">
         <a class="menuBtn"><i class="fas fa-bars fa-3x"></i></a>
@@ -19,7 +21,7 @@
         <div class="menu ">
             <a class="closeBtn"><i class="fas fa-times fa-3x"></i></a>
             <ul class="nav">
-                <li><a>abous</a></li>
+                <li><a>about</a></li>
                 <li><a>content</a></li>
                 <li><a>user</a></li>
                 <li><a>address</a></li>
@@ -31,12 +33,51 @@
         var menu = document.getElementsByClassName('menu')[0];
         var menuBtn = document.getElementsByClassName('menuBtn')[0];
         var closeBtn = document.getElementsByClassName('closeBtn')[0];
-        menuBtn.addEventListener('click', function(){
-            menu.classList.add('open');
+
+
+        var dataNav = {
+        };
+
+        Object.defineProperty(dataNav, 'navIsOpen', {
+            get: function () {
+                //4、被調用後回傳navIsOpen值
+                console.log('收到回傳，且值為', navIsOpen)
+                return navIsOpen;
+            },
+            //2、dataNav.navIsOpen被修改，所以setter被觸發，並將值給value，並且觸發navClick()
+            set: function (value) {
+                navIsOpen = value;
+                console.log('setter觸發，且值為', value)
+                navClick();
+
+            }
+
         })
-        closeBtn.addEventListener('click', function(){
-            menu.classList.remove('open');
+        //3、if判斷式中dataNav.navIsOpen被調用讀取，觸發getter
+        //5、從getter得到navIsOpen的值，並做出判斷
+        //6、操作css
+        function navClick() {
+            if (dataNav.navIsOpen) {
+                console.log("open")
+                menu.classList.add('open');
+            } else {
+                menu.classList.remove('open')
+                console.log("close")
+            }
+        }
+
+        //1、事件發生，dataNav.navIsOpen被付值
+        menuBtn.addEventListener('click', function () {
+            console.log("clickOpen ,", dataNav.navIsOpen)
+            dataNav.navIsOpen = true;
+
         })
+        closeBtn.addEventListener('click', function () {
+            console.log("clickClose ,dataNav.navIsOpen = true")
+            dataNav.navIsOpen = false;
+        })
+
     </script>
 </body>
+
 </html>
