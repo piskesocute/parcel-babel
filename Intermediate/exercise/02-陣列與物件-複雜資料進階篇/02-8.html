@@ -34,49 +34,84 @@
         var menuBtn = document.getElementsByClassName('menuBtn')[0];
         var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-
-        var dataNav = {
+        var data = {
+            isMenuOpen: false
         };
 
-        Object.defineProperty(dataNav, 'navIsOpen', {
+        var bool = data["isMenuOpen"];
+
+        Object.defineProperty(data, "isMenuOpen", {
             get: function () {
-                //4、被調用後回傳navIsOpen值
-                console.log('收到回傳，且值為', navIsOpen)
-                return navIsOpen;
+                return bool
             },
-            //2、dataNav.navIsOpen被修改，所以setter被觸發，並將值給value，並且觸發navClick()
             set: function (value) {
-                navIsOpen = value;
-                console.log('setter觸發，且值為', value)
-                navClick();
-
+                isMenuOpen = value;//這邊isMenuOpen=value的意義是?  
+                bool = value//是不是要改成 bool = value
+                handClass(value);
             }
+        });
 
-        })
-        //3、if判斷式中dataNav.navIsOpen被調用讀取，觸發getter
-        //5、從getter得到navIsOpen的值，並做出判斷
-        //6、操作css
-        function navClick() {
-            if (dataNav.navIsOpen) {
-                console.log("open")
+        console.log(data.isMenuOpen)
+
+
+        function handClass(value) {
+            if (value) {
                 menu.classList.add('open');
             } else {
                 menu.classList.remove('open')
-                console.log("close")
             }
         }
 
-        //1、事件發生，dataNav.navIsOpen被付值
-        menuBtn.addEventListener('click', function () {
-            console.log("clickOpen ,", dataNav.navIsOpen)
-            dataNav.navIsOpen = true;
 
+        menuBtn.addEventListener('click', function () {
+            data.isMenuOpen = true;
         })
         closeBtn.addEventListener('click', function () {
-            console.log("clickClose ,dataNav.navIsOpen = true")
-            dataNav.navIsOpen = false;
+            data.isMenuOpen = false;
         })
 
+
+        // var dataNav = {
+        //     navIsOpen: false,
+        // };
+
+        // var bool = dataNav["navIsOpen"];
+
+        // Object.defineProperty(dataNav, 'navIsOpen', {
+        //     get: function () {
+        //         //4、被調用後回傳navIsOpen值
+        //         console.log('收到回傳，且值為', bool)
+        //         return bool;
+        //     },
+        //     //2、dataNav.navIsOpen被修改，所以setter被觸發，並將值給value，並且觸發navClick()
+        //     set: function (value) {
+        //         bool = value
+        //         console.log('setter觸發，且值為', bool)
+        //         navClick(value);
+
+        //     }
+
+        // })
+        // //3、if判斷式中dataNav.navIsOpen被調用讀取，觸發getter
+        // //5、從getter得到navIsOpen的值，並做出判斷
+        // //6、操作css
+        // function navClick(value) {
+        //     if (value) {
+        //         console.log("open")
+        //         menu.classList.add('open');
+        //     } else {
+        //         menu.classList.remove('open')
+        //         console.log("close")
+        //     }
+        // }
+
+        // //1、事件發生，dataNav.navIsOpen被付值
+        // menuBtn.addEventListener('click', function () {
+        //     dataNav.navIsOpen = true;
+        // })
+        // closeBtn.addEventListener('click', function () {
+        //     dataNav.navIsOpen = false;
+        // })
     </script>
 </body>
 

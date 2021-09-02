@@ -28,27 +28,40 @@
         }
 
 
-        function BindValue(obj, key, callb) {
-            console.log(10);
+        function BindValue(obj, key, callback) {
+            //把 obj的內容先用變數接起來，避免getter的時候被清空
+            var val = obj[key]
 
             Object.defineProperty(obj, key, {
                 get() {
-                    return key;
+                    console.log("getter")
+                    return val;
                 },
                 set(value) {
-                    key = value;
-                    callb(key)
+                    val = value;
+                    console.log("setter")
+                    callback()
                 }
             })
+
         }
+        BindValue(data, 'title', function () {
+            console.log(data);
+        });
 
-        BindValue(data, 'title', function (key) {
-            console.log(key);
-        })
+        BindValue(data, 'link', function () {
+            console.log(data);
+        });
 
+        BindValue(data, 'text', function () {
+            console.log(data);
+        });
 
-        data.title = "123";
+        BindValue(data, 'money', function () {
+            console.log(data);
+        });
 
+        data.link = "123";
 
 
 

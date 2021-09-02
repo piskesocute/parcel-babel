@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>數字千分位符號</title>
 </head>
+
 <body>
 
     <script>
-        
-        function Num(num){
-            
+
+        function Num(num) {
+            var str = num + "";
+            var strsplit = str.split('').reverse();
+
+            var idx = 0;
+            var newArr = [];
+            strsplit.forEach(function (item) {
+                idx++
+                if (idx > 3) {
+                    idx = 1
+                    newArr.push(",")
+                }
+                newArr.push(item);
+            })
+
+            return newArr.reverse().join('')
         }
 
         var n = Num(5241522);
         console.log(n);
-        
+
     </script>
 
 
-    
+
 </body>
+
 </html>

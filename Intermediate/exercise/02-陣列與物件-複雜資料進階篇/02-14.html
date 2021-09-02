@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/02-14.css">
 </head>
+
 <body>
     <div id="app">
         <ul class="tit bgcolor">
@@ -15,7 +17,7 @@
         </ul>
         <div class="itemList">
             <ul id="itemBox" class="tit">
-                <li>小豬</li>
+                <!-- <li>小豬</li> -->
             </ul>
         </div>
     </div>
@@ -41,8 +43,52 @@
                 name: "本田",
                 sex: "boy"
             }
-        ]
-    
+        ];
+
+
+        var html = '';
+
+        var newArr = arr.map(function (obj) {
+            return obj.name + obj.sex;
+        })
+
+        console.log(newArr);
+        //0: "遊戲boy"
+        // 1: "幸子girl"
+        // 2: "城之內boy"
+        // 3: "海馬boy"
+        // 4: "本田boy"
+
+        newArr.forEach(function (txt) {
+            console.log(txt)
+            html += '<li>' + txt + '</li>'
+        });
+
+        document.getElementById('itemBox').innerHTML = html;
+
+
+
+
+
+        var newArr2 = arr.map(function (obj) {
+            var obj2 = {};
+            obj2[obj.name] = obj.sex;
+
+
+            return obj2;
+        })
+
+        //0: {遊戲: "boy"}
+        // 1: { 幸子: "girl" }
+        // 2: { 城之內: "boy" }
+        // 3: { 海馬: "boy" }
+        // 4: { 本田: "boy" }
+
+        console.log(newArr2);
     </script>
+
+
+
 </body>
+
 </html>

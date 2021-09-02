@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>分割字串 slice</title>
 </head>
+
 <body>
-    
+
 
     <script>
 
-        
+
         var email = "1208966@gmail.com";
 
 
+        // console.log(email.slice(0, 7));
+        // console.log(email.slice(0, -10))
+        // console.log(email.slice(-50, -10))
 
-        
+        var at = email.indexOf("@")
+        console.log(email.slice(0, at))
+
+
+
+        // var str = "1234567890"
+
+        // console.log(str.slice(1, -4))
+        // console.log(str.slice(1, str.length - 4))
+
+        // const paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+
+        // const searchTerm = 'dog';
+        // const indexOfFirst = paragraph.indexOf(searchTerm);
+        // console.log(paragraph.indexOf(searchTerm, (indexOfFirst + 1)))
+
+        // console.log(`The index of the first "${searchTerm}" from the beginning is ${indexOfFirst}`);
+        // // expected output: "The index of the first "dog" from the beginning is 40"
+
+        // console.log(`The index of the 2nd "${searchTerm}" is ${paragraph.indexOf(searchTerm, (indexOfFirst + 1))}`);
+        // // // expected output: "The index of the 2nd "dog" is 52"
+
+
+
+        // var un = 'var undefined'.indexOf()
+        // 'undefine'.indexOf()
+        // console.log(un)
+
+        var str = "it dog is dog no dog"
+
+        var firstDog = str.indexOf("dog")
+        console.log(firstDog)//回傳3 ，因為第一個dog出現在第四個字符
+        console.log(str.indexOf("dog", (firstDog + 1)))
+
     </script>
 
 
 
 
 </body>
+
 </html>

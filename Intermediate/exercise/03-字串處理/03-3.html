@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/03-1.css">
 </head>
+
 <body>
-    
-    <div>  
+
+    <div>
         <h1>請輸入老師的英文名字</h1>
         <input id="searchBar" type="text">
         <button id="submit">送出</button>
@@ -20,18 +22,42 @@
     <script>
         // toLocaleLowerCase 大寫轉小寫
         // toLocaleUpperCase 小寫轉大寫
-        
+
         var searchBar = document.getElementById("searchBar")
         var submit = document.getElementById("submit")
-        
-        submit.addEventListener("click", function(){
-            
-            
+
+        submit.addEventListener("click", function () {
+
+            var str = searchBar.value.trim().toLocaleLowerCase();
+            console.log(str);
+
+            switch (str) {
+                case ' ':
+                    alert("請輸入內容");
+                    console.log(1)
+                    break;
+
+                case 'mike':
+                    alert("ok");
+                    console.log(2)
+                    break;
+                default:
+                    alert("請輸入正確內容")
+                    console.log(3)
+            }
+            // if (str === "") {
+            //     alert("請輸入內容")
+            // }
+            // if (str === "mike") {
+            //     alert("ok")
+            // }
+
         });
 
-        
+
     </script>
 
 
 </body>
+
 </html>

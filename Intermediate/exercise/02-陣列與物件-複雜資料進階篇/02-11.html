@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/02-11.css">
 </head>
+
 <body>
 
 
@@ -63,16 +65,99 @@
         var newData = data;
         var itemList = document.getElementsByClassName("itemList")[0];
         var html = "";
-        for(var i = 0; i < data.length; i++){
-            html += '<ul class="tit2">'
-            html += '<li>'+data[i].name+'</li>'
-            html += '<li>'+data[i].money+'</li>'
-            html += '<li>'+data[i].age+'</li>'
-            html += '<li>'+data[i].sex+'</li>'
-            html += '</ul>'
+
+        var user_money = document.getElementById("user_money");
+        var user_age = document.getElementById("user_age");
+        var user_sex = document.getElementById("user_sex");
+
+
+        function DOMRander(arr) {
+            html = '';
+            itemList.innerHTML = '';
+            arr.forEach(function (obj) {
+                html += '<ul class="tit2">'
+                html += '<li>' + obj.name + '</li>'
+                html += '<li>' + obj.money + '</li>'
+                html += '<li>' + obj.age + '</li>'
+                html += '<li>' + obj.sex + '</li>'
+                html += '</ul>'
+            })
+            itemList.innerHTML = html;
         }
-        itemList.innerHTML = html;
+
+
+        //進入頁面時的內容
+        DOMRander(newData);
+
+
+        function userMoney(value) {
+            var m = Number(value);
+            var arr = [];
+            newData.forEach(function (obj) {
+                if (obj.money > m) {
+                    arr.push(obj);
+                }
+            })
+
+            DOMRander(arr);
+        };
+        function userAge(value) {
+            var m = Number(value);
+            var arr = [];
+            newData.forEach(function (obj) {
+                if (obj.age > m) {
+                    arr.push(obj);
+                }
+            })
+            DOMRander(arr);
+        };
+
+        function userSex(value) {
+            var m = value;
+            var arr = [];
+            newData.forEach(function (obj) {
+                if (obj.sex === m) {
+                    arr.push(obj);
+                }
+                //判斷內容是否為空
+                if (m === 'no') {
+                    arr.push(obj);
+                }
+            })
+            DOMRander(arr);
+        };
+
+
+        user_money.addEventListener("change", function () {
+            userMoney(this.value);
+            //當選擇時清空其他選單值
+            user_age.value = 0
+            user_sex.value = 'no'
+        })
+
+        user_age.addEventListener("change", function () {
+            userAge(this.value);
+            user_money.value = 0
+            user_sex.value = 'no'
+        })
+
+        user_sex.addEventListener("change", function () {
+            userSex(this.value);
+            user_money.value = 0
+            user_age.value = 0
+        })
+
+        // for(var i = 0; i < data.length; i++){
+        //     html += '<ul class="tit2">'
+        //     html += '<li>'+data[i].name+'</li>'
+        //     html += '<li>'+data[i].money+'</li>'
+        //     html += '<li>'+data[i].age+'</li>'
+        //     html += '<li>'+data[i].sex+'</li>'
+        //     html += '</ul>'
+        // }
+        // itemList.innerHTML = html;
     </script>
 
 </body>
+
 </html>
