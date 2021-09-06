@@ -12,27 +12,43 @@
 
 <body>
     <div>
-        <input id="searchBar" type="text">
-        <button id="submit">送出</button>
+        <!-- <input id="searchBar" type="text">
+        <button id="submit">送出</button> -->
+        <button class="button" value="1">First</button>
+        <button class="button" value="2">Second</button>
+        <button class="button" value="3">Third</button>
     </div>
 
 
     <script>
 
-        var searchBar = document.getElementById("searchBar")
-        var submit = document.getElementById("submit")
+        // var searchBar = document.getElementById("searchBar")
+        // var submit = document.getElementById("submit")
 
 
-        submit.addEventListener("click", function () {
-            var str = searchBar.value.trim();
+        // submit.addEventListener("click", function () {
+        //     var str = searchBar.value.trim();
 
-            if (str === "mike") {
-                alert("成功");
-            }
+        //     if (str === "mike") {
+        //         alert("成功");
+        //     }
 
 
 
-        })
+        // })
+
+        var buttons = document.querySelectorAll("button");
+
+
+
+        for (var j = 0; j < buttons.length; j++) {
+
+            buttons[j].addEventListener("click", clickHandler);
+        }
+
+        function clickHandler(j) {
+            console.log(this.value * 1)
+        }
 
 
     </script>
