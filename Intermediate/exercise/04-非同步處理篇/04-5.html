@@ -18,11 +18,46 @@
         // GET http://www.mocky.io/v2/5ce0c2e8330000b937608c61
         // POST http://www.mocky.io/v2/5cc3f1c43400007800765473 { userid: "123456789" }
 
-        console.log("1")
-        axios.post('https://run.mocky.io/v3/f3940448-8863-48a9-89c5-4e036a59dcee', {
-            userName: 'Fred',
-            password: 'flintstone'
-        })
+        // console.log("1")
+        // axios.post('https://run.mocky.io/v3/f3940448-8863-48a9-89c5-4e036a59dcee', {
+        //     userName: 'Fred',
+        //     password: 'flintstone'
+        // })
+        //     .then(function (response) {
+        //         if (response.data.state === 'ok') {
+        //             alert("成功")
+        //         } else {
+        //             alert("失敗")
+        //         }
+        //         console.table(response.data) //成功的話執行
+        //     })
+        //     .catch(function (error) {
+        //         console.log("3")
+        //         console.error(error) //失敗的話執行
+        //     })
+
+        //     .finally(function () {
+        //         console.log("4")
+        //     })
+        // console.log("5")
+
+
+        //因為axios是非同步執行，所以順序 1、5、2(3錯誤才會執行)、4
+
+
+
+        //JSON
+        var obj = {
+            userName: 'evan',
+            password: '1234'
+        }
+
+        //FormData
+        var fobj = new FormData();//建構式
+        fobj.append('userName', "evan")
+        fobj.append('password', "1234")
+
+        axios.post('https://run.mocky.io/v3/414be5fc-f71e-497a-b1c5-6b3edd3b79ab', fobj)
             .then(function (response) {
                 if (response.data.state === 'ok') {
                     alert("成功")
@@ -39,10 +74,7 @@
             .finally(function () {
                 console.log("4")
             })
-        console.log("5")
 
-
-        //因為axios是非同步執行，所以順序 1、5、2(3錯誤才會執行)、4
     </script>
 </body>
 
