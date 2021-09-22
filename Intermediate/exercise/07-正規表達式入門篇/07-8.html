@@ -23,8 +23,22 @@
             "1234/23/45678",
             "12345/23/45",
         ];
+        var html = ""
         
+        var reg= /^([0-9]{4})\/([0-9]{2})\/([0-9]{2})$/
         
+        var dataArr = Datestr.filter(function(date){
+            return reg.test(date)
+
+        }).map(function(item){
+            return item.replace(/\//,"-")
+
+        }).forEach(function(arr){
+            html+='<li>'+arr+'</li>'
+        })
+        
+        document.getElementById("app").innerHTML=html
+
 
         
     

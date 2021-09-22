@@ -10,6 +10,26 @@
     
     <script>
         var strArr = ["airline", "banner", "apple", "cat", "dog", "applepay", "linerair", "airplane", "wayair", "habit"];
+        var reg=/^air/
+        var str = strArr.filter(function(item){
+            return reg.test(item)
+        })
+        console.log(str)
+
+
+        var reg2=/er$/
+        var str2 = strArr.filter(function(item2){
+            return reg2.test(item2)
+        })
+        console.log(str2)
+
+
+        var strArr2 = ["airliner", "banner", "appler", "catr", "dogr", "applepayr", "linerair", "airplaner", "wayair", "habit"];
+        var reg3=/^air.*er$/
+        var str3 = strArr2.filter(function(item3){
+            return reg3.test(item3)
+        })
+        console.log(str3)
     </script>
 
 

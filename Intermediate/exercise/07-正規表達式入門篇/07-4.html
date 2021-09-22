@@ -12,8 +12,8 @@
 
 
         <div>  
-            <h1>請輸入你的英文名字</h1>
-            <input id="searchBar" type="text" placeholder="輸入大寫的英文字母">
+            <h1>請輸入數字</h1>
+            <input id="searchBar" type="text" placeholder="輸入數字">
             <button id="submit">送出</button>
         </div>
     
@@ -21,7 +21,7 @@
         <script>
             var searchBar = document.getElementById("searchBar");
             var submit = document.getElementById("submit");
-            var regex = /[A-Z]/g;
+            var regex = /[0-9]/g;
             
             submit.addEventListener("click", function(){
                 var value = searchBar.value.trim()
@@ -32,9 +32,13 @@
 
                 
                 // 
+                if(!regex.test(value)){
+                    alert("請輸入數字");
+                    return
+                }
 
-
-                alert("輸入成功")
+                alert("輸入成功");
+                
 
             });
     

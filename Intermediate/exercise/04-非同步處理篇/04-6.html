@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,37 +9,211 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/04-6.css">
 </head>
+
 <body>
     <!-- https://www.mocky.io/ -->
 
     <div id="app">
-        
+
         <img id="logo" src="./images/logo2.png" alt="">
-        
+
         <select id="city" name="city">
-            <!-- <option value=""></option> -->
+            <!-- <option  value=""></option> -->
         </select>
-        
+
         <select id="area" name="area">
             <!-- <option value=""></option> -->
         </select>
-        
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
         // 鄉鎮資料 "http://www.mocky.io/v2/5cc3f5723400005d00765480"
 
-        window.onload = function(){
+        var city = [];
+        var cityHtml = '';
+        var cityOption = document.getElementById('city');
+        var area = [];
+        var areaHtml = '';
+
+        window.onload = function () {
+            axios.get('http://www.mocky.io/v2/5cc3f5723400005d00765480')
+                .then(function (res) {
+
+                    city = res.data.twzip.city;
+                    cityRanDer(city);
+                    cityChang();
+
+                });
 
 
-            
+            function cityRanDer(city) {
 
-        }
+                city.forEach(function (obj) {
+
+                    cityHtml += '<option value="' + obj.name + '">' + obj.name + '</option>';
+
+                });
+
+                cityOption.innerHTML = cityHtml;
+
+                areaChange(cityOption.value);
+            };
+
+            function areaChange(value) {
+
+                areaHtml = '';
+
+                var areaObj = city.filter(function (obj) {
+
+                    return obj.name === value;
+
+                });
+
+                areaObj[0].area.forEach(function (item) {
+
+                    areaHtml += '<option value="' + item.name + '">' + item.name + '</option>'
+
+                })
+
+                document.getElementById("area").innerHTML = areaHtml;
+            };
+
+
+
+            function cityChang() {
+
+                cityOption.addEventListener("change", function () {
+
+                    areaChange(this.value);
+
+                })
+            };
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var city = [];
+        // var cityHtml = '';
+        // var cityBlock = document.getElementById("city")
+        // var area = [];
+        // var areaHtml = '';
+        // var areaBlock = document.getElementById("area")
+
+
+        // window.onload = function () {
+        //     axios.get("http://www.mocky.io/v2/5cc3f5723400005d00765480")
+
+        //         .then(function (res) {
+        //             city = res.data.twzip.city
+        //             cityRander(city);
+        //             changeCity()
+
+        //         })
+
+        //     function cityRander(city) {
+        //         city.forEach(function (obj) {
+        //             cityHtml += '<option  value="' + obj.name + '">' + obj.name + '</option>'
+        //         })
+        //         cityBlock.innerHTML = cityHtml;
+        //         areaRander(cityBlock.value);
+        //     }
+
+
+        //     function areaRander(value) {
+        //         areaHtml = '';
+        //         var areaObj = city.filter(function (obj) {
+        //             return obj.name === value
+        //         })
+        //         areaObj[0].area.forEach(function (local) {
+        //             areaHtml += '<option value="' + local.name + '">' + local.name + '</option>'
+        //         })
+        //         areaBlock.innerHTML = areaHtml;
+
+        //     }
+
+        //     function changeCity() {
+        //         cityBlock.addEventListener("change", function () {
+        //             areaRander(this.value);
+        //         })
+        //     };
+
+
+        // }
+
+
+
+
+
+
+
+
+
+        // var city = [];
+        // var cityHtml = "";
+        // var area = [];
+        // var areaHtml = "";
+
+
+
+        // window.onload = function () {
+        //     axios.get("http://www.mocky.io/v2/5cc3f5723400005d00765480")
+
+        //         .then(function (res) {
+        //             city = res.data.twzip.city;
+        //             randerCity(city);
+        //             changCity();
+        //         })
+
+        //     function randerCity(city) {
+
+        //         city.forEach(function (obj) {
+        //             cityHtml += '<option value="' + obj.name + '">' + obj.name + '</option>'
+        //         });
+        //         document.getElementById("city").innerHTML = cityHtml;
+        //         areaRander(document.getElementById('city').value);
+        //     };
+
+        //     function areaRander(value) {
+        //         areaHtml = "";
+        //         var areaObj = city.filter(function (obj) {
+        //             return obj.name === value;
+        //         });
+        //         console.log(areaObj)
+        //         areaObj[0].area.forEach(function (item) {
+        //             areaHtml += '<option value="' + item.name + '">' + item.name + '</option>'
+        //         });
+
+        //         document.getElementById('area').innerHTML = areaHtml;
+        //     }
+
+        //     function changCity() {
+
+        //         document.getElementById("city").addEventListener('change', function () {
+        //             areaRander(this.value);
+
+        //         })
+        //     };
+        // }
 
     </script>
 
 
 
 </body>
+
 </html>

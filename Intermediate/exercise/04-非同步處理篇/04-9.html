@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/04-9.css">
 </head>
+
 <body>
     <div id="app">
-            <!-- seachOk -->
+        <!-- seachOk -->
         <div id="bar" class="">
             <input class="seachBar" type="text" placeholder="輸入想找的 instagram 圖片">
         </div>
@@ -20,7 +22,7 @@
         </div>
 
         <a id="more">More</a>
-      
+
         <!-- pop照片 -->
         <div class="pop">
             <img class="popImg" src="" alt="">
@@ -28,14 +30,19 @@
 
         <!-- loading -->
         <div class="loading">
-            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="./lib/BindValue.js"></script>
     <script>
-        window.onload = function(){
+        window.onload = function () {
 
             var seachBar = document.getElementsByClassName('seachBar')[0];
             var moreBtn = document.getElementById('more');
@@ -56,7 +63,7 @@
             var photoTag = {
                 pages: [],             // 存取目前有的照片
             }
-            
+
             // https://www.instagram.com/explore/tags/{標籤}/?__a=1&max_id={最後一頁的hash}
             // encodeURI(字串編碼) & decodeURI(轉回字串)
 
@@ -65,22 +72,40 @@
 
 
             //鍵盤按下
-            seachBar.addEventListener('keyup', function(e){
-                
+            seachBar.addEventListener('keyup', function (e) {
+                if (e.keyCode !== 13) return;
+                if (this.value === '') return;
+                SearchHashTag(this.value);
             })
 
-            //鍵盤按下
-            moreBtn.addEventListener("click", function(){
-                
+            //more按下
+            moreBtn.addEventListener("click", function () {
+
             })
 
             //開始搜尋圖片
-            function SearchHashTag(keyword){
-                
+            function SearchHashTag(keyword) {
+
+                baseUrl = 'https://www.instagram.com/explore/tags/' + encodeURI(keyword) + '/'
+                CORS = 'https://cors-anywhere.herokuapp.com/'
+                axios.get(CORS + baseUrl)
+
+                    .then(function (res) {
+
+                        console.log(res)
+                    })
+                    .catch(function (err) {
+
+                        console.log(err)
+                    })
+
+
+
+
             }
 
             // 重製資料
-            function resetData(){
+            function resetData() {
                 img_html = '';
                 photoTag.pages = [];
                 document.getElementsByClassName("imgBox")[0].innerHTML = '';
@@ -89,13 +114,13 @@
             }
 
             //如果資料有變動就重新更新畫面
-            BindValue(photoTag, 'pages', function(val){
-                
+            BindValue(photoTag, 'pages', function (val) {
+
             })
 
             // loading資料變動
-            BindValue(Loading, 'isOpem', function(bool){
-                
+            BindValue(Loading, 'isOpem', function (bool) {
+
             })
 
 
@@ -103,4 +128,5 @@
     </script>
 
 </body>
+
 </html>
