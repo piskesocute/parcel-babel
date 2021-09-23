@@ -32,15 +32,14 @@
         // 鄉鎮資料 "http://www.mocky.io/v2/5cc3f5723400005d00765480"
 
         var city = [];
-        var cityHtml = '';
+        // var cityHtml = '';
         var cityOption = document.getElementById('city');
         var area = [];
-        var areaHtml = '';
+        // var areaHtml = '';
 
         window.onload = function () {
             axios.get('http://www.mocky.io/v2/5cc3f5723400005d00765480')
                 .then(function (res) {
-
                     city = res.data.twzip.city;
                     cityRanDer(city);
                     cityChang();
@@ -49,32 +48,26 @@
 
 
             function cityRanDer(city) {
-
+                let cityHtml =``
                 city.forEach(function (obj) {
-
-                    cityHtml += '<option value="' + obj.name + '">' + obj.name + '</option>';
-
+                    cityHtml += `<option value="${obj.name}">${obj.name}</option>`
                 });
 
                 cityOption.innerHTML = cityHtml;
-
                 areaChange(cityOption.value);
             };
 
             function areaChange(value) {
 
-                areaHtml = '';
+                let areaHtml = ``;
 
                 var areaObj = city.filter(function (obj) {
-
                     return obj.name === value;
-
                 });
 
                 areaObj[0].area.forEach(function (item) {
-
-                    areaHtml += '<option value="' + item.name + '">' + item.name + '</option>'
-
+                    // areaHtml += '<option value="' + item.name + '">' + item.name + '</option>'
+                    areaHtml += `<option value="${item.name}">${item.name}</option>`
                 })
 
                 document.getElementById("area").innerHTML = areaHtml;
