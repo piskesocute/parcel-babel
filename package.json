@@ -11,10 +11,13 @@
     "start": "parcel src/index.html",
     "build-prod": "parcel build src/index.html"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.21.4",
+    "photo": "^0.2.13"
+  },
   "devDependencies": {
-    "parcel-bundler": "^1.12.5",
     "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6"
+    "@babel/preset-env": "^7.15.6",
+    "parcel-bundler": "^1.12.5"
   }
 }
